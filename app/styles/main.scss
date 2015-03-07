@@ -1,6 +1,6 @@
 nav {
   background: black;
-  height: 20px;
+ // height: 20px;
   padding: 10px;
   color: white;
 }
@@ -12,8 +12,42 @@ nav {
 }
 
 div.movie-list {
-    width: 25%;
+  //  width: 25%;
     // height: 200px;
-    float: left;
-    background: red;
+  //  float: left;
+  //  background: red;
+}
+
+.row {
+// border: 1px black solid;
+ display: table;
+ margin-bottom: 5px;
+ //height: 100%;
+}
+
+[class*="col-"] {
+    float: none;
+  //  border: 1px black solid;
+
+//   border-left: 1px black solid;
+    display: table-cell;
+    vertical-align: top;
+}
+// .col-md-3 {
+//   border-right: 1px black solid;
+//   border-left: 1px black solid;
+//   background: green;
+//   height: 100%;
+//  // width: 100%;
+//  // padding: 5px;
+//   //margin: 2px;
+// }
+
+.movie-text{
+background: #d3d3d3;
+ margin: 1px;
+ padding: 5px;
+ height: 100%;
+ border: 3px white dashed;
+
 }

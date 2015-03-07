@@ -22,10 +22,15 @@ App.getMovies = function(){
   });
 };
 
-App.indexMovies = function(movies){
-  trace(movies)
-  movies.forEach(App.renderMovie);
-};
+// App.indexMovies = function(movies){
+//   trace(movies)
+//   movies.forEach(App.renderMovie);
+// };
+
+App.filterMpaa = function(mpaaRate, e){
+  if(e.preventDefault) e.preventDefault();
+  //filter visible text
+}
 
 App.renderMovies = function(movies){
   var rowLoop;
@@ -38,7 +43,7 @@ App.renderMovies = function(movies){
       rowLoop=movies.length-i;
     };
     for (var j = 0; j < rowLoop; j++){
-      $('#'+i).append('<div class="col-md-3">' + '<h1 class="movie-title">' + movies[i+j].title + '</h1> </div>')
+      $('#'+i).append('<div class="col-md-3">' + '<div class="movie-text"><h1 class="movie-title">' + movies[i+j].title + '</h1>'+ "MPAA Rating: " + movies[i+j].mpaaRate + '<br>' + "Release Date: " + movies[i+j].release_date + '<br>' + "Gross: " + movies[i+j].gross + '</div></div>')
     }
     $('.movie-list').append('</div>');
   };
