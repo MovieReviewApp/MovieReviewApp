@@ -16,32 +16,49 @@ App.getMovies = function(){
     url: App.url + '/movies',
     type: 'GET'
   }).done(function(data){
-    App.indexMovies(data);
+    App.renderMovies(data);
   }).fail(function(jqXHR, textStatus, errorThrown){
     trace(jqXHR, textStatus, errorThrown);
   });
 };
 
 App.indexMovies = function(movies){
+  trace(movies)
   movies.forEach(App.renderMovie);
 };
 
-App.renderMovie = function(currentVal,index,array){
-  trace(currentVal, index, array);
-  for (var i = 0; i < 4; i++) {
-    $('.movie-list').append('<div class="row">');
-        $('.row').append('<div class="col-md-4">' + '<h1 class="movie-title">' + currentVal.title + '</h1>' + '<p class="movie-desc">' + currentVal.description + '</p>' + '<p>Number of reviews: ' + currentVal.reviews.length + '</p>' + '</div>');
+App.renderMovies = function(movies){
+  var rowLoop;
+  //trace(currentVal, index, array);
+  for (var i = 0; i < movies.length; i=i+4) {
+    $('.movie-list').append('<div class="row" id="'+ i +'">');
+    if(i+4 < movies.length){
+      rowLoop=4;
+    }else{
+      rowLoop=movies.length-i;
+    };
+    for (var j = 0; j < rowLoop; j++){
+      $('#'+i).append('<div class="col-md-3">' + '<h1 class="movie-title">' + movies[i+j].title + '</h1> </div>')
+    }
     $('.movie-list').append('</div>');
   };
-
 };
 
+// App.renderMovie = function(currentVal,index,array){
+//   trace(currentVal, index, array);
+//   for (var i = 0; i < 4; i++) {
+//     $('.movie-list').append('<div class="row">');
+//         $('.row').append('<div class="col-md-4">' + '<h1 class="movie-title">' + currentVal.title + '</h1>' + '<p class="movie-desc">' + currentVal.description + '</p>' + '<p>Number of reviews: ' + currentVal.reviews.length + '</p>' + '</div>');
+//     $('.movie-list').append('</div>');
+//   };
+
+// };
 
 $(document).ready(function(){
-  $('#movie-search').on('change', function(event){
-    $('#sub-search').append('<select name="sub-category"><option value="">Select sub-category</option></select>');
-  });
-
+  // $('#movie-search').on('change', function(event){
+  //   $('#sub-search').append('<select name="sub-category"><option value="">Select sub-category</option></select>');
+  console.log("We're in the document ready.");
+ // });
   App.getMovies();
 
   // $('#movie-list').on('')
