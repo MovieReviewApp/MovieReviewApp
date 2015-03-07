@@ -1,0 +1,19 @@
+nav {
+  background: black;
+  height: 20px;
+  padding: 10px;
+  color: white;
+}
+
+#main {
+    width: 100%;
+    margin: auto;
+    padding: 5px;
+}
+
+div.movie-list {
+    width: 25%;
+    // height: 200px;
+    float: left;
+    background: red;
+}
