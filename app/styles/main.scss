@@ -20,6 +20,13 @@ div.movie-list {
   //  float: left;
   //  background: red;
 }
+
+select#star-rating {
+  height:30px;
+  line-height:30px;
+  background: white;
+}
+
 select {
   height:30px;
   line-height:30px;
