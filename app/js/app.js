@@ -10,7 +10,6 @@ var App = App || {
     url: 'http://localhost:3000'
 };
 
-
 App.getMovies = function(){
   $.ajax({
     url: App.url + '/movies',
@@ -33,22 +32,9 @@ App.filterMpaa = function(mpaaRate, e){
 }
 
 App.renderMovies = function(movies){
- // var rowLoop;
-  //trace(currentVal, index, array);
- // for (var i = 0; i < movies.length; i=i+4) {
-  //  $('.movie-list').append('<div class="row" id="'+ i +'">');
-  //  if(i+4 < movies.length){
-  //    rowLoop=4;
-  //  }else{
-   //   rowLoop=movies.length-i;
-   // };
-  //  for (var j = 0; j < rowLoop; j++){
-   // $('.movie-list').append('<div class="row">');
-    for (var j = 0; j < movies.length; j++){
-      $('.movie-list').append('<div class="col-md-3">' + '<ul class="movie-text"><li id="movie-title"><h2 class="movie-title">' + movies[j].title + '</h2></li>'+ '<li class="mpaa" id="' + movies[j].mpaa_rating +'">'+ "MPAA Rating: " + movies[j].mpaa_rating + '</li><li class="release-date" id="' + movies[j].release_date.slice(0,4) + '">' + "Release Date: " + movies[j].release_date + '</li><li class="gross" id="' + movies[j].gross + '">' + "Gross: " + movies[j].gross + '</li></ul></div>')
-    }
- //   $('.movie-list').append('</div>');
-//  };
+  for (var j = 0; j < movies.length; j++){
+    $('.movie-list').append('<div class="col-md-3">' + '<ul class="movie-text"><li id="movie-title"><h2 class="movie-title">' + movies[j].title + '</h2></li>'+ '<li class="mpaa" id="' + movies[j].mpaa_rating +'">'+ "MPAA Rating: " + movies[j].mpaa_rating + '</li><li class="release-date" id="' + movies[j].release_date.slice(0,4) + '">' + "Release Date: " + movies[j].release_date + '</li><li class="gross" id="' + movies[j].gross + '">' + "Gross: " + movies[j].gross + '</li></ul></div>')
+  }
 };
 
 App.filterMovies = function(){
@@ -57,30 +43,23 @@ App.filterMovies = function(){
 
   $filterDate.on('change',function(e){
     if(e.preventDefault) e.preventDefault();
-    console.log($filterDate.val());
+  //  console.log($filterDate.val());
     App.filterByDate($filterDate.val());
   });
 
   $filterMpaa.on('change',function(e){
     if(e.preventDefault) e.preventDefault();
-    console.log("Made it in filter mpaa");
+    App.filterByMpaa($filterMpaa.val());
+  //  console.log("Made it in filter mpaa");
   });
 };
 
-// App.allMovieDoms = function(){
-//   var $movieRowList = $('.movie-list').children();
-//   var allMovies = [];
-//   for(var i = 0; i < $movieRowList.length; i++){
-//     allMovies.push($($movieRowList[i]).children());
-//   }
-//   return(allMovies);
-// }
 
 App.filterByDate = function(selectDate){
   var $releaseDates = $(".release-date");
   var $movieText = $(".movie-text");
   for(var i = 0; i<$releaseDates.length; i++){
-    if($releaseDates[i].id === selectDate){
+    if($releaseDates[i].id === selectDate || selectDate==='0'){
       $($movieText[i]).parent().show();
     }else{
       $($movieText[i]).parent().hide();
@@ -88,6 +67,17 @@ App.filterByDate = function(selectDate){
   };
 };
 
+App.filterByMpaa = function(selectMpaa){
+  var $mpaaRating = $(".mpaa");
+  var $movieText = $(".movie-text");
+  for(var i = 0; i<$mpaaRating.length; i++){
+    if($mpaaRating[i].id === selectMpaa || selectMpaa==='0'){
+      $($movieText[i]).parent().show();
+    }else{
+      $($movieText[i]).parent().hide();
+    }
+  };
+};
 // App.renderMovie = function(currentVal,index,array){
 //   trace(currentVal, index, array);
 //   for (var i = 0; i < 4; i++) {
