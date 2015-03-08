@@ -10,12 +10,20 @@ nav {
     margin: auto;
     padding: 5px;
 }
+#movie-search{
+  color: black;
+}
 
 div.movie-list {
   //  width: 25%;
     // height: 200px;
   //  float: left;
   //  background: red;
+}
+select {
+  height:30px;
+  line-height:30px;
+  background: black;
 }
 
 // .row {
@@ -25,12 +33,13 @@ div.movie-list {
 //  //height: 100%;
 // }
 
-[class*="col-"] {
+//[class*="col-"] {
   //  float: none;
   //  border: 1px black solid;
 
 //   border-left: 1px black solid;
   //  display: table-cell;
+  #movie-result-col{
     vertical-align: top;
     height: 200px;
     width: 300px;

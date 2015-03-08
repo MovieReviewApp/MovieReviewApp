@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Javascript Repo Template</title>
+    <title>Movie Search</title>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -11,12 +11,16 @@
   <body>
     <nav class="navbar" id="navbar">
       <div class="container-fluid">
-        <form id="filter-form">
-          <div class="form-group">
-          <label for="movie-search">Movie Search</label>
-          <input type="search" id="movie-search" placeholder="Enter Title" />
+        <div class="row">
+        <div class="col-md-4">
+        <label for="movie-search">Movie Title Search</label>
+          <input type="text" id="movie-search" placeholder="Enter Movie Title">
+          <form id="filter-form">
+          </div>
          <!--  <div id="sub-search">
           </div> -->
+          <div class="col-md-4">
+          <label for="select-user">Filter Movies</label>
           <select class="select-user" id="filter-date" >
             <option value="0">Release Date All</option>
             <option value="2010">2010</option>
@@ -26,6 +30,8 @@
             <option value="2014">2014</option>
             <option value="2015">2015</option>
             </select>
+           <!--  </div>
+            <div class="col-md-1"> -->
           <select class="select-category" id="filter-mpaa">
             <option value="0">MPAA Rating All</option>
             <option value="G">G</option>
@@ -35,8 +41,9 @@
             <option value="NC-17">NC-17</option>
             <option value="unrated">unrated</option>
           </select>
-          </div>
         </form>
+        </div>
+      </div>
       </div>
     </nav>
 
