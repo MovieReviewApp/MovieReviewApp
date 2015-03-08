@@ -21,16 +21,6 @@ App.getMovies = function(){
   });
 };
 
-// App.indexMovies = function(movies){
-//   trace(movies)
-//   movies.forEach(App.renderMovie);
-// };
-
-App.filterMpaa = function(mpaaRate, e){
-  if(e.preventDefault) e.preventDefault();
-  //filter visible text
-}
-
 App.renderMovies = function(movies){
   for (var j = 0; j < movies.length; j++){
     $('.movie-list').append('<div class="col-md-3">' + '<ul class="movie-text"><li id="movie-title"><h2 class="movie-title">' + movies[j].title + '</h2></li>'+ '<li class="mpaa" id="' + movies[j].mpaa_rating +'">'+ "MPAA Rating: " + movies[j].mpaa_rating + '</li><li class="release-date" id="' + movies[j].release_date.slice(0,4) + '">' + "Release Date: " + movies[j].release_date + '</li><li class="gross" id="' + movies[j].gross + '">' + "Gross: " + movies[j].gross + '</li></ul></div>')
@@ -40,26 +30,53 @@ App.renderMovies = function(movies){
 App.filterMovies = function(){
   var $filterDate = $('#filter-date');
   var $filterMpaa = $('#filter-mpaa');
+  var $filterForm = $('#filter-form');
 
-  $filterDate.on('change',function(e){
+  $filterForm.on('change',function(e){
     if(e.preventDefault) e.preventDefault();
+    var releaseDate = $filterDate.val();
+    var mpaa = $filterMpaa.val();
   //  console.log($filterDate.val());
-    App.filterByDate($filterDate.val());
+    // App.filterByDate($filterDate.val());
+    // App.filterByMpaa($filterMpaa.val());
+  //  debugger;
+    if (releaseDate==='0' && mpaa !=='0'){
+      App.filterByOnlyMpaa(mpaa);
+    }else if(mpaa==='0' && releaseDate !=='0'){
+      App.filterByOnlyDate(releaseDate);
+    }else{
+      App.filterByDateMpaa(releaseDate, mpaa);
+    };
   });
 
-  $filterMpaa.on('change',function(e){
-    if(e.preventDefault) e.preventDefault();
-    App.filterByMpaa($filterMpaa.val());
-  //  console.log("Made it in filter mpaa");
-  });
+  // $filterMpaa.on('change',function(e){
+  //   if(e.preventDefault) e.preventDefault();
+  //   App.filterByMpaa($filterMpaa.val());
+  // //  console.log("Made it in filter mpaa");
+  // });
 };
 
+App.filterByDateMpaa = function(selectDate, selectMpaa){
+  var $releaseDates = $(".release-date");
+  var $mpaaRating = $(".mpaa");
+  var $movieText = $(".movie-text");
+//  debugger;
+  for(var i = 0; i<$movieText.length; i++){
+    if(selectDate === selectMpaa){
+      $($movieText[i]).parent().show();
+    } else if ($releaseDates[i].id === selectDate && $mpaaRating[i].id === selectMpaa){
+      $($movieText[i]).parent().show();
+    }else{
+      $($movieText[i]).parent().hide();
+    };
+  }
+};
 
-App.filterByDate = function(selectDate){
+App.filterByOnlyDate = function(selectDate){
   var $releaseDates = $(".release-date");
   var $movieText = $(".movie-text");
   for(var i = 0; i<$releaseDates.length; i++){
-    if($releaseDates[i].id === selectDate || selectDate==='0'){
+    if($releaseDates[i].id === selectDate){
       $($movieText[i]).parent().show();
     }else{
       $($movieText[i]).parent().hide();
@@ -67,11 +84,11 @@ App.filterByDate = function(selectDate){
   };
 };
 
-App.filterByMpaa = function(selectMpaa){
+App.filterByOnlyMpaa = function(selectMpaa){
   var $mpaaRating = $(".mpaa");
   var $movieText = $(".movie-text");
   for(var i = 0; i<$mpaaRating.length; i++){
-    if($mpaaRating[i].id === selectMpaa || selectMpaa==='0'){
+    if($mpaaRating[i].id === selectMpaa){
       $($movieText[i]).parent().show();
     }else{
       $($movieText[i]).parent().hide();
