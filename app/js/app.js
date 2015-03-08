@@ -7,8 +7,10 @@ var trace = function(){
 };
 
 var App = App || {
-    url: 'http://localhost:3000'
+    url: 'http://localhost:3000',
 };
+
+//App.movieId = 0;
 
 App.getMovies = function(){
   $.ajax({
@@ -16,6 +18,7 @@ App.getMovies = function(){
     type: 'GET'
   }).done(function(data){
     App.renderMovies(data);
+    App.showDetails();
   }).fail(function(jqXHR, textStatus, errorThrown){
     trace(jqXHR, textStatus, errorThrown);
   });
@@ -23,8 +26,21 @@ App.getMovies = function(){
 
 App.renderMovies = function(movies){
   for (var j = 0; j < movies.length; j++){
-    $('.movie-list').append('<div class="col-md-3" id="movie-result-col">' + '<ul class="movie-text"><li id="movie-title"><h2 class="movie-title" id="'+ movies[j].title +'">' + movies[j].title + '</h2></li>'+ '<li class="mpaa" id="' + movies[j].mpaa_rating +'">'+ "MPAA Rating: " + movies[j].mpaa_rating + '</li><li class="release-date" id="' + movies[j].release_date.slice(0,4) + '">' + "Release Date: " + movies[j].release_date + '</li><li class="gross" id="' + movies[j].gross + '">' + "Gross: " + movies[j].gross + '</li></ul></div>')
+    $('.movie-list').append('<div class="col-md-3" id="movie-result-col">' + '<ul class="movie-text"><li id="movie-title"><h2 class="movie-title" id="'+ movies[j].title +'">' + movies[j].title + '</h2></li>'+ '<li class="mpaa" id="' + movies[j].mpaa_rating +'">'+ "MPAA Rating: " + movies[j].mpaa_rating + '</li><li class="release-date" id="' + movies[j].release_date.slice(0,4) + '">' + "Release Date: " + movies[j].release_date + '</li><li><a href="/show.html" id="show-details" data-params={"id":"'+ movies[j].id + '"}> Show Details</a></li></ul></div>')
   }
+};
+
+
+App.showDetails = function(){
+  var $showDetails = $('a#show-details');
+  var movieId;
+  $showDetails.click(function(e){
+    if(e.preventDefault) e.preventDefault();
+    var movieDOM = $(this), movieData = movieDOM.data('params');
+    window.location.href = "/show.html?id=" + movieData.id;
+   // movieId = data.id;
+  });
+  App.getMovie(movieId);
 };
 
 App.filterMovies = function(){
@@ -124,9 +140,14 @@ $(document).ready(function(){
   //   $('#sub-search').append('<select name="sub-category"><option value="">Select sub-category</option></select>');
  // console.log("We're in the document ready.");
  // });
+
+  var locate = window.location.search;
+  var point = locate.lastIndexOf("=");
+  var movie_id = parseInt(locate.substring(point+1,locate.length));
   App.getMovies();
 
   App.filterMovies();
+
   // $('#movie-list').on('')
   // $('#movie-search').on('change', function(event){
   //   $('#sub-search').append('<select name="sub-category">');
