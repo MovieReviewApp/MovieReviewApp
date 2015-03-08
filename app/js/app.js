@@ -44,17 +44,11 @@ App.filterMovies = function(){
       $('#movie-search').val("");
     };
   });
+
   $filterForm.on('change',function(e){
     if(e.preventDefault) e.preventDefault();
     var releaseDate = $filterDate.val();
     var mpaa = $filterMpaa.val();
-   // var movieTitle = $('#movie-search').val();
-
-   // if(movieTitle){
-     // $('#filter-date').val('0');
-     // $('#filter-mpaa').val('0');
-    //  App.filterByTitle(movieTitle);
-    //  $('#movie-search').val("");
      if (releaseDate==='0' && mpaa !=='0'){
       App.filterByOnlyMpaa(mpaa);
     }else if(mpaa==='0' && releaseDate !=='0'){
@@ -62,9 +56,7 @@ App.filterMovies = function(){
     }else{
       App.filterByDateMpaa(releaseDate, mpaa);
     };
- //   debugger;
   });
-//  debugger;
 };
 
 App.filterByDateMpaa = function(selectDate, selectMpaa){
