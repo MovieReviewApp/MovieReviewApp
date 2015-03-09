@@ -55,6 +55,14 @@ select {
 ul {
   list-style-type: none;
 }
+
+#review-result-col{
+  background: white;
+ margin: 3px;
+ padding: 5px;
+ height: 100%;
+ border: 3px white groove;
+}
 // .col-md-3 {
 //   border-right: 1px black solid;
 //   border-left: 1px black solid;
@@ -64,6 +72,13 @@ ul {
 //  // padding: 5px;
 //   //margin: 2px;
 // }
+.movie-show{
+  background:black;
+  font-size: 2em;
+  border: 4px yellow groove;
+  color: white;
+  margin: 15px;
+}
 
 .movie-text{
  vertical-align: top;
