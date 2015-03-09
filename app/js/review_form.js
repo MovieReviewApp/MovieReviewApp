@@ -46,6 +46,9 @@ App.submitReview = function(event,movieId){
     },
   }).done(function(data){
     App.updateReviews(data,movieId);
+    $('#star-rating').val(""),
+    $('#review-comment').val(""),
+    $('#username').val("")
     trace(data,movieId);
   }).fail(function(jqXKR, textStatus, errorThrown){
     trace(jqXKR, textStatus, errorThrown);
