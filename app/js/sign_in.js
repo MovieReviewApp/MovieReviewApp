@@ -23,7 +23,7 @@ var UserApp = (function() {
     $.ajax({
       url: apiHost + '/users',
       type: 'POST',
-      data: {user: {email: $('#email').val(), password: $('#password').val()}},
+      data: {user: {name: $('#name').val(), email: $('#email').val(), password: $('#password').val()}},
     })
     .done(loginSuccess)
     .fail(function(err) {
