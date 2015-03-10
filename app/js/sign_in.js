@@ -1,6 +1,6 @@
 'use strict';
 
-var App = (function() {
+var UserApp = (function() {
   var authToken, apiHost;
 
   var run = function() {
@@ -92,5 +92,5 @@ var App = (function() {
 
 
 $(document).ready(function() {
-  App.run();
+  UserApp.run();
 });
