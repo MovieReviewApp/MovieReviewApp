@@ -40,7 +40,7 @@ App.showDetails = function(){
     window.location.href = "/show.html?id=" + movieData.id;
    // movieId = data.id;
   });
-  App.getMovie(movieId);
+ // App.getMovie(movieId);
 };
 
 App.filterMovies = function(){

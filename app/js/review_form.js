@@ -7,7 +7,7 @@ var trace = function(){
   }
 };
 
-var App = App || {
+var ReviewApp = ReviewApp || {
     url: 'http://localhost:3000'
 };
 
@@ -23,7 +23,7 @@ var App = App || {
 //   });
 // };
 
-App.updateReviews = function(data,movieId){
+ReviewApp.updateReviews = function(data,movieId){
     $.ajax({
     url: 'http://localhost:3000/movies/' + movieId + '/reviews/' + data.id,
     type: 'PATCH',
@@ -32,10 +32,10 @@ App.updateReviews = function(data,movieId){
     }).fail();
 };
 
-App.submitReview = function(event,movieId){
+ReviewApp.submitReview = function(event,movieId){
   if(event.preventDefault) event.preventDefault();
   $.ajax({
-    url: App.url + '/reviews',
+    url: ReviewApp.url + '/reviews',
     type: 'POST',
     data: {review:
       {
@@ -45,7 +45,7 @@ App.submitReview = function(event,movieId){
       }
     },
   }).done(function(data){
-    App.updateReviews(data,movieId);
+    ReviewApp.updateReviews(data,movieId);
     $('#star-rating').val(""),
     $('#review-comment').val(""),
     $('#username').val("")
@@ -62,7 +62,7 @@ $(document).ready(function(){
   var movieId = parseInt(locate.substring(point+1,locate.length));
 
   $('form.new-review-form').on('submit',function(event){
-    App.submitReview(event,movieId);
+    ReviewApp.submitReview(event,movieId);
   });
 });
 
